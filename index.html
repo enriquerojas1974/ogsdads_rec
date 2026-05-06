@@ -8,416 +8,371 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #f5f5f5;
-    --white: #ffffff;
-    --surface: #eeeeee;
-    --border: #e0e0e0;
-    --accent: #2d6a4f;
-    --accent-light: #e8f4ef;
-    --text: #1a1a1a;
-    --muted: #6b7280;
-    --shadow: 0 1px 4px rgba(0,0,0,0.08);
-    --shadow-lg: 0 4px 24px rgba(0,0,0,0.10);
-    --radius: 10px;
-  }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+/* ════════════════════════════════════════════
+   DESIGN TOKENS
+════════════════════════════════════════════ */
+:root {
+  --bg: #f5f5f5;
+  --white: #ffffff;
+  --surface: #eeeeee;
+  --border: #e0e0e0;
+  --accent: #2d6a4f;
+  --accent-light: #e8f4ef;
+  --text: #1a1a1a;
+  --muted: #6b7280;
+  --shadow: 0 1px 4px rgba(0,0,0,0.08);
+  --shadow-lg: 0 4px 24px rgba(0,0,0,0.10);
+  --radius: 10px;
+}
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-    min-height: 100vh;
-  }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
-  /* ── HEADER ── */
-  header {
-    background: var(--accent);
-    color: white;
-    padding: 2.5rem 1.25rem 3rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  header::before {
-    content: '';
-    position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse at 15% 85%, rgba(255,255,255,0.07) 0%, transparent 55%),
-      radial-gradient(ellipse at 85% 10%, rgba(255,255,255,0.05) 0%, transparent 55%);
-    pointer-events: none;
-  }
-  .header-inner { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
 
-  .header-badge {
-    display: inline-block;
-    background: rgba(255,255,255,0.18);
-    border: 1px solid rgba(255,255,255,0.3);
-    border-radius: 999px;
-    padding: 0.3rem 1rem;
-    font-size: 0.7rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    font-weight: 600;
-    margin-bottom: 0.9rem;
-  }
+/* ════════════════════════════════════════════
+   HEADER — SHARED
+════════════════════════════════════════════ */
+header {
+  background: var(--accent);
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding: 2.5rem 1.5rem 3rem;
+}
+header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 85%, rgba(255,255,255,0.07) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 10%, rgba(255,255,255,0.05) 0%, transparent 55%);
+  pointer-events: none;
+}
+.header-inner { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
 
-  header h1 {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(2.2rem, 7vw, 3.5rem);
-    font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 0.6rem;
-    letter-spacing: 0;
-  }
-  header h1 span { font-style: italic; font-weight: 400; display: block; font-size: 0.75em; opacity: 0.85; margin-top: 0.1rem; }
-  header p { font-size: 0.95rem; opacity: 0.75; font-weight: 400; max-width: 340px; margin: 0 auto; }
+.header-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 999px;
+  padding: 0.3rem 1rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 0.9rem;
+}
+header h1 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2.2rem, 6vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 0.6rem;
+}
+header h1 span {
+  font-style: italic;
+  font-weight: 400;
+  display: block;
+  font-size: 0.75em;
+  opacity: 0.85;
+  margin-top: 0.1rem;
+}
+header p { font-size: 0.95rem; opacity: 0.75; max-width: 360px; margin: 0 auto; }
 
-  /* ── SEARCH ── */
-  .search-wrap {
-    max-width: 640px;
-    margin: -1.4rem auto 0;
-    padding: 0 1rem;
-    position: relative;
-    z-index: 10;
-  }
-  .search-box {
-    background: var(--white);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-lg);
-    display: flex;
-    align-items: center;
-    padding: 0 1rem;
-    gap: 0.6rem;
-    border: 2px solid transparent;
-    transition: border-color 0.2s;
-  }
-  .search-box:focus-within { border-color: var(--accent); }
-  .search-icon { color: var(--muted); font-size: 1rem; flex-shrink: 0; line-height: 1; }
-  .search-box input {
-    flex: 1;
-    border: none; outline: none;
-    padding: 0.95rem 0;
-    font-family: inherit;
-    font-size: 1rem;
-    color: var(--text);
-    background: transparent;
-    /* Prevents iOS zoom on focus */
-    font-size: max(1rem, 16px);
-  }
-  .search-box input::placeholder { color: var(--muted); }
-  #searchCount {
-    font-size: 0.72rem;
-    color: var(--muted);
-    white-space: nowrap;
-    font-weight: 500;
-    flex-shrink: 0;
-  }
+/* ════════════════════════════════════════════
+   SEARCH — SHARED
+════════════════════════════════════════════ */
+.search-wrap {
+  max-width: 640px;
+  margin: -1.4rem auto 0;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 10;
+}
+.search-box {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  gap: 0.6rem;
+  border: 2px solid transparent;
+  transition: border-color 0.2s;
+}
+.search-box:focus-within { border-color: var(--accent); }
+.search-icon { color: var(--muted); font-size: 1rem; flex-shrink: 0; }
+.search-box input {
+  flex: 1; border: none; outline: none;
+  padding: 0.95rem 0;
+  font-family: inherit;
+  font-size: 16px; /* prevents iOS zoom */
+  color: var(--text);
+  background: transparent;
+}
+.search-box input::placeholder { color: var(--muted); }
+#searchCount { font-size: 0.72rem; color: var(--muted); white-space: nowrap; font-weight: 500; flex-shrink: 0; }
 
-  /* ── TOOLBAR ── */
-  .toolbar {
-    max-width: 860px;
-    margin: 1.1rem auto 0;
-    padding: 0 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-  }
-  .toolbar-left { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+/* ════════════════════════════════════════════
+   TOOLBAR — SHARED
+════════════════════════════════════════════ */
+.toolbar {
+  max-width: 860px;
+  margin: 1.1rem auto 0;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.toolbar-left { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
 
-  .btn-expand {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    /* Minimum 44px tap target */
-    padding: 0.6rem 1rem;
-    min-height: 44px;
-    font-family: inherit;
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--muted);
-    cursor: pointer;
-    transition: all 0.18s;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .btn-expand:hover, .btn-expand:active { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+.btn-expand {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.55rem 1rem;
+  min-height: 40px;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.18s;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-expand:hover, .btn-expand:active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-light);
+}
+.last-updated { font-size: 0.72rem; color: var(--muted); }
 
-  .last-updated {
-    font-size: 0.72rem;
-    color: var(--muted);
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-  }
+/* ════════════════════════════════════════════
+   UPDATE INFO — SHARED
+════════════════════════════════════════════ */
+.update-info { max-width: 860px; margin: 1rem auto 0; padding: 0 1rem; }
+.update-info details { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.update-info summary {
+  padding: 0.8rem 1.1rem;
+  font-size: 0.82rem; font-weight: 600;
+  color: var(--muted); cursor: pointer;
+  display: flex; align-items: center; gap: 0.5rem;
+  user-select: none; list-style: none; min-height: 44px;
+  -webkit-tap-highlight-color: transparent;
+}
+.update-info summary::-webkit-details-marker { display: none; }
+.update-info summary:hover { color: var(--accent); }
+.update-info-body { padding: 1rem 1.1rem 1.25rem; border-top: 1px solid var(--border); font-size: 0.82rem; color: var(--muted); line-height: 1.75; }
+.update-info-body ol { padding-left: 1.1rem; margin-top: 0.4rem; }
+.update-info-body li { margin-bottom: 0.4rem; }
+.update-info-body code { background: var(--surface); padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.8rem; color: var(--text); font-family: monospace; }
+.col-grid { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.5rem; }
+.col-pill { background: var(--surface); border-radius: 4px; padding: 0.2rem 0.55rem; font-size: 0.74rem; color: var(--text); font-weight: 500; }
 
-  /* ── UPDATE INFO ── */
-  .update-info { max-width: 860px; margin: 1rem auto 0; padding: 0 1rem; }
-  .update-info details {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    overflow: hidden;
-  }
-  .update-info summary {
-    padding: 0.8rem 1.1rem;
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--muted);
-    cursor: pointer;
-    display: flex; align-items: center; gap: 0.5rem;
-    user-select: none;
-    list-style: none;
-    min-height: 44px;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .update-info summary::-webkit-details-marker { display: none; }
-  .update-info summary:hover { color: var(--accent); }
-  .update-info-body {
-    padding: 1rem 1.1rem 1.25rem;
-    border-top: 1px solid var(--border);
-    font-size: 0.82rem;
-    color: var(--muted);
-    line-height: 1.75;
-  }
-  .update-info-body ol { padding-left: 1.1rem; margin-top: 0.4rem; }
-  .update-info-body li { margin-bottom: 0.4rem; }
-  .update-info-body code {
-    background: var(--surface);
-    padding: 0.1rem 0.4rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    color: var(--text);
-    font-family: 'Courier New', monospace;
-  }
-  .col-grid {
-    display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.5rem;
-  }
-  .col-pill {
-    background: var(--surface);
-    border-radius: 4px;
-    padding: 0.2rem 0.55rem;
-    font-size: 0.74rem;
-    color: var(--text);
-    font-weight: 500;
-  }
+/* ════════════════════════════════════════════
+   MAIN / DIRECTORY — SHARED
+════════════════════════════════════════════ */
+main { max-width: 860px; margin: 1.25rem auto 5rem; padding: 0 1rem; }
 
-  /* ── MAIN ── */
-  main {
-    max-width: 860px;
-    margin: 1.25rem auto 4rem;
-    padding: 0 1rem;
-  }
+.loading { text-align: center; padding: 4rem 1rem; color: var(--muted); }
+.loading-spinner { width: 34px; height: 34px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; margin: 0 auto 1rem; animation: spin 0.75s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
 
-  /* ── LOADING ── */
-  .loading { text-align: center; padding: 4rem 1rem; color: var(--muted); }
-  .loading-spinner {
-    width: 34px; height: 34px;
-    border: 3px solid var(--border);
-    border-top-color: var(--accent);
-    border-radius: 50%;
-    margin: 0 auto 1rem;
-    animation: spin 0.75s linear infinite;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
+.error-box { background: #fff4f2; border: 1px solid #fcd5cd; border-radius: var(--radius); padding: 1.5rem; text-align: center; display: none; }
+.error-box h3 { font-size: 1rem; color: #c0392b; margin-bottom: 0.5rem; }
+.error-box p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+.error-box code { background: var(--surface); padding: 0.1rem 0.35rem; border-radius: 3px; font-size: 0.8rem; color: var(--text); }
 
-  /* ── ERROR ── */
-  .error-box {
-    background: #fff4f2;
-    border: 1px solid #fcd5cd;
-    border-radius: var(--radius);
-    padding: 1.5rem;
-    text-align: center;
-    display: none;
-  }
-  .error-box h3 { font-size: 1rem; color: #c0392b; margin-bottom: 0.5rem; }
-  .error-box p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
-  .error-box code { background: var(--surface); padding: 0.1rem 0.35rem; border-radius: 3px; font-size: 0.8rem; color: var(--text); }
+.category-block { margin-bottom: 0.55rem; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); background: var(--white); box-shadow: var(--shadow); animation: fadeUp 0.35s ease both; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
 
-  /* ── CATEGORY BLOCK ── */
-  .category-block {
-    margin-bottom: 0.55rem;
-    border-radius: var(--radius);
-    overflow: hidden;
-    border: 1px solid var(--border);
-    background: var(--white);
-    box-shadow: var(--shadow);
-    animation: fadeUp 0.35s ease both;
-  }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+.category-header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; min-height: 56px; cursor: pointer; user-select: none; gap: 0.75rem; transition: background 0.15s; -webkit-tap-highlight-color: transparent; }
+.category-header:hover, .category-header:active { background: var(--accent-light); }
+.cat-left { display: flex; align-items: center; gap: 0.7rem; min-width: 0; }
+.cat-icon { width: 38px; height: 38px; background: var(--accent-light); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+.cat-name { font-size: 0.97rem; font-weight: 600; color: var(--text); }
+.cat-count { background: var(--accent-light); color: var(--accent); font-size: 0.68rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 999px; flex-shrink: 0; }
+.cat-chevron { color: var(--muted); font-size: 0.75rem; transition: transform 0.28s ease; flex-shrink: 0; margin-left: auto; }
+.category-block.open .cat-chevron { transform: rotate(180deg); }
+.category-body { display: none; border-top: 1px solid var(--border); }
+.category-block.open .category-body { display: block; }
 
-  .category-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.9rem 1rem;
-    /* Generous tap target on mobile */
-    min-height: 56px;
-    cursor: pointer;
-    user-select: none;
-    gap: 0.75rem;
-    transition: background 0.15s;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .category-header:hover,
-  .category-header:active { background: var(--accent-light); }
+.listing { padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); }
+.listing:last-child { border-bottom: none; }
+.listing:hover { background: #fafafa; }
 
-  .cat-left { display: flex; align-items: center; gap: 0.7rem; min-width: 0; }
+.listing-name { font-weight: 600; font-size: 0.95rem; color: var(--text); margin-bottom: 0.3rem; display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap; line-height: 1.4; }
+.ogs-badge { background: var(--accent); color: white; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.08em; padding: 0.15rem 0.45rem; border-radius: 3px; text-transform: uppercase; white-space: nowrap; }
+.listing-phone { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.95rem; color: var(--accent); font-weight: 600; text-decoration: none; padding: 0.2rem 0; -webkit-tap-highlight-color: transparent; }
+.listing-phone:hover { text-decoration: underline; }
+.listing-phone2 { font-size: 0.82rem; color: var(--muted); margin-top: 0.1rem; }
+.listing-url { font-size: 0.82rem; color: var(--accent); text-decoration: none; display: inline-block; margin-top: 0.15rem; word-break: break-all; }
+.listing-url:hover { text-decoration: underline; }
+.listing-address { font-size: 0.82rem; color: var(--muted); margin-top: 0.2rem; }
+.listing-hours { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; font-style: italic; }
+.listing-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-top: 0.3rem; }
+.listing-ref { font-size: 0.75rem; color: var(--muted); margin-top: 0.35rem; display: flex; align-items: center; gap: 0.3rem; }
+.listing-ref::before { content: '👤'; font-size: 0.7rem; }
 
-  .cat-icon {
-    width: 38px; height: 38px;
-    background: var(--accent-light);
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.1rem;
-    flex-shrink: 0;
-  }
-  .cat-name {
-    font-size: 0.97rem;
-    font-weight: 600;
-    color: var(--text);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .cat-count {
-    background: var(--accent-light);
-    color: var(--accent);
-    font-size: 0.68rem;
-    font-weight: 700;
-    padding: 0.15rem 0.5rem;
-    border-radius: 999px;
-    flex-shrink: 0;
-  }
-  .cat-chevron {
-    color: var(--muted);
-    font-size: 0.75rem;
-    transition: transform 0.28s ease;
-    flex-shrink: 0;
-    margin-left: auto;
-  }
-  .category-block.open .cat-chevron { transform: rotate(180deg); }
-  .category-body { display: none; border-top: 1px solid var(--border); }
-  .category-block.open .category-body { display: block; }
+.no-results { text-align: center; padding: 3rem 1rem; color: var(--muted); display: none; }
+.no-results.show { display: block; }
+.no-results-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+.no-results h3 { font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 0.4rem; }
 
-  /* ── LISTING ── */
-  .listing {
-    padding: 1rem 1rem;
-    border-bottom: 1px solid var(--border);
-  }
-  .listing:last-child { border-bottom: none; }
+footer { text-align: center; padding: 1.75rem 1rem; color: var(--muted); font-size: 0.78rem; border-top: 1px solid var(--border); }
 
-  .listing-name {
-    font-weight: 600;
-    font-size: 0.95rem;
-    color: var(--text);
-    margin-bottom: 0.3rem;
-    display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap;
-    line-height: 1.4;
-  }
-  .ogs-badge {
-    background: var(--accent);
-    color: white;
-    font-size: 0.58rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    padding: 0.15rem 0.45rem;
-    border-radius: 3px;
-    text-transform: uppercase;
-    white-space: nowrap;
-  }
 
-  /* Big tap-friendly phone link on mobile */
-  .listing-phone {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    font-size: 1rem;
-    color: var(--accent);
-    font-weight: 600;
-    text-decoration: none;
-    padding: 0.25rem 0;
-    margin-bottom: 0.15rem;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .listing-phone:hover { text-decoration: underline; }
-  .listing-phone::before { content: '📞'; font-size: 0.8rem; }
+/* ════════════════════════════════════════════
+   MOBILE STYLES  (body.is-mobile)
+   Applied via JavaScript on touch devices
+════════════════════════════════════════════ */
 
-  .listing-phone2 { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.15rem; }
+/* Compact header */
+body.is-mobile header {
+  padding: 1.5rem 1rem 2.75rem;
+}
+body.is-mobile header h1 {
+  font-size: 2rem;
+}
+body.is-mobile header p {
+  font-size: 0.85rem;
+}
+body.is-mobile .header-badge {
+  font-size: 0.62rem;
+  padding: 0.25rem 0.75rem;
+  margin-bottom: 0.6rem;
+}
 
-  .listing-url {
-    font-size: 0.82rem;
-    color: var(--accent);
-    text-decoration: none;
-    display: inline-block;
-    margin-top: 0.15rem;
-    word-break: break-all;
-  }
-  .listing-url:hover { text-decoration: underline; }
+/* Full-width search with bigger input */
+body.is-mobile .search-wrap {
+  padding: 0 0.75rem;
+}
+body.is-mobile .search-box {
+  padding: 0 0.85rem;
+  border-radius: 8px;
+}
+body.is-mobile .search-box input {
+  padding: 1.05rem 0;
+  font-size: 16px;
+}
+body.is-mobile #searchCount {
+  display: none;
+}
 
-  .listing-address {
-    font-size: 0.82rem;
-    color: var(--muted);
-    margin-top: 0.2rem;
-    line-height: 1.45;
-  }
-  .listing-hours {
-    font-size: 0.8rem;
-    color: var(--muted);
-    margin-top: 0.2rem;
-    font-style: italic;
-    line-height: 1.45;
-  }
-  .listing-desc {
-    font-size: 0.85rem;
-    color: var(--muted);
-    line-height: 1.6;
-    margin-top: 0.3rem;
-  }
-  .listing-ref {
-    font-size: 0.75rem;
-    color: var(--muted);
-    margin-top: 0.35rem;
-    display: flex; align-items: center; gap: 0.3rem;
-  }
-  .listing-ref::before { content: '👤'; font-size: 0.7rem; }
+/* Toolbar — stack neatly */
+body.is-mobile .toolbar {
+  padding: 0 0.75rem;
+  margin-top: 0.85rem;
+  gap: 0.5rem;
+}
+body.is-mobile .btn-expand {
+  flex: 1;
+  text-align: center;
+  justify-content: center;
+  min-height: 48px;
+  font-size: 0.88rem;
+  border-radius: 8px;
+}
+body.is-mobile .last-updated {
+  width: 100%;
+  justify-content: center;
+  font-size: 0.7rem;
+}
 
-  /* ── NO RESULTS ── */
-  .no-results { text-align: center; padding: 3rem 1rem; color: var(--muted); display: none; }
-  .no-results.show { display: block; }
-  .no-results-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
-  .no-results h3 { font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 0.4rem; }
+/* Update info */
+body.is-mobile .update-info {
+  padding: 0 0.75rem;
+  margin-top: 0.75rem;
+}
+body.is-mobile .update-info summary {
+  font-size: 0.8rem;
+}
 
-  /* ── FOOTER ── */
-  footer {
-    text-align: center;
-    padding: 1.75rem 1rem;
-    color: var(--muted);
-    font-size: 0.78rem;
-    border-top: 1px solid var(--border);
-  }
+/* Main content */
+body.is-mobile main {
+  padding: 0 0.75rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
 
-  /* ── MOBILE OVERRIDES ── */
-  @media (max-width: 480px) {
-    header { padding: 2rem 1rem 2.75rem; }
-    header h1 { font-size: 1.75rem; }
-    .search-wrap { padding: 0 0.75rem; }
-    .toolbar { padding: 0 0.75rem; }
-    .update-info { padding: 0 0.75rem; }
-    main { padding: 0 0.75rem; margin-top: 1rem; }
-    .category-header { padding: 0.85rem 0.85rem; }
-    .listing { padding: 0.9rem 0.85rem; }
-    .listing-phone { font-size: 1.05rem; }
-    #searchCount { display: none; }
-  }
+/* Category rows — bigger tap area */
+body.is-mobile .category-header {
+  padding: 0.9rem 1rem;
+  min-height: 60px;
+}
+body.is-mobile .cat-icon {
+  width: 40px; height: 40px;
+  font-size: 1.2rem;
+}
+body.is-mobile .cat-name {
+  font-size: 1rem;
+}
+body.is-mobile .cat-count {
+  font-size: 0.7rem;
+  padding: 0.2rem 0.55rem;
+}
+body.is-mobile .cat-chevron {
+  font-size: 0.85rem;
+}
+
+/* Listings — optimised for thumb use */
+body.is-mobile .listing {
+  padding: 1rem 1rem;
+}
+body.is-mobile .listing-name {
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+/* Big green phone button on mobile */
+body.is-mobile .listing-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.55rem 1.1rem;
+  border-radius: 8px;
+  margin: 0.4rem 0 0.25rem;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.15s;
+}
+body.is-mobile .listing-phone:active {
+  opacity: 0.8;
+}
+body.is-mobile .listing-phone::before {
+  content: '📞';
+  font-size: 0.85rem;
+}
+body.is-mobile .listing-desc {
+  font-size: 0.88rem;
+  margin-top: 0.4rem;
+}
+body.is-mobile .listing-url {
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+}
+body.is-mobile .listing-address {
+  font-size: 0.84rem;
+}
+body.is-mobile .listing-ref {
+  font-size: 0.78rem;
+  margin-top: 0.4rem;
+}
+
 </style>
 </head>
 <body>
@@ -433,7 +388,8 @@
 <div class="search-wrap">
   <div class="search-box">
     <span class="search-icon">🔍</span>
-    <input type="text" id="searchInput" placeholder="Search name, category, phone…" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+    <input type="text" id="searchInput" placeholder="Search name, category, phone…"
+      autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
     <span id="searchCount"></span>
   </div>
 </div>
@@ -454,26 +410,22 @@
       <ol>
         <li>Open <code>businesses.csv</code> in Excel or Google Sheets</li>
         <li>Make your changes — add rows, edit cells, or delete rows</li>
-        <li>Save as <strong>CSV (Comma delimited)</strong> — keep the exact filename <code>businesses.csv</code></li>
-        <li>Go to your GitHub repo, click <code>businesses.csv</code>, click the pencil ✏️ icon to edit or upload a new version</li>
+        <li>Save as <strong>CSV (Comma delimited)</strong> — keep the filename <code>businesses.csv</code></li>
+        <li>Go to your GitHub repo, click <code>businesses.csv</code>, click ✏️ to edit or upload a new version</li>
         <li>Click <strong>Commit changes</strong> — site updates within 60 seconds</li>
       </ol>
       <br>
       <strong>CSV column order:</strong>
       <div class="col-grid">
-        <span class="col-pill">Category</span>
-        <span class="col-pill">Name</span>
-        <span class="col-pill">Phone</span>
-        <span class="col-pill">Phone2</span>
-        <span class="col-pill">Website</span>
-        <span class="col-pill">Address</span>
-        <span class="col-pill">Hours</span>
-        <span class="col-pill">Description</span>
-        <span class="col-pill">ReferredBy</span>
-        <span class="col-pill">OGSDad</span>
+        <span class="col-pill">Category</span><span class="col-pill">Name</span>
+        <span class="col-pill">Phone</span><span class="col-pill">Phone2</span>
+        <span class="col-pill">Website</span><span class="col-pill">Address</span>
+        <span class="col-pill">Hours</span><span class="col-pill">Description</span>
+        <span class="col-pill">ReferredBy</span><span class="col-pill">OGSDad</span>
       </div>
       <br>
-      For <code>OGSDad</code>: type <code>Yes</code> to show the green badge, leave blank otherwise.</div>
+      For <code>OGSDad</code>: type <code>Yes</code> to show the green badge, leave blank otherwise.
+    </div>
   </details>
 </div>
 
@@ -482,14 +434,11 @@
     <div class="loading-spinner"></div>
     <p>Loading directory…</p>
   </div>
-
   <div class="error-box" id="errorBox">
     <h3>⚠️ Could not load businesses.csv</h3>
     <p>Make sure <code>businesses.csv</code> is in the same folder as this file in your GitHub repo.</p>
   </div>
-
   <div id="directory"></div>
-
   <div class="no-results" id="noResults">
     <div class="no-results-icon">🔎</div>
     <h3>No results found</h3>
@@ -500,6 +449,16 @@
 <footer>OGS Dads Community Directory · Mississauga, ON</footer>
 
 <script>
+/* ── MOBILE DETECTION ──────────────────────────────────────────────────────
+   Uses both touch capability AND screen width.
+   This fires before paint so there's no layout flash.                      */
+(function() {
+  const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+  const isNarrow = window.innerWidth <= 768;
+  if (isTouch || isNarrow) document.body.classList.add('is-mobile');
+})();
+
+/* ── DATA ─────────────────────────────────────────────────────────────── */
 const CATEGORY_ICONS = {
   "Accountant":"📊","Appliance Repair":"🔧","Auto Body":"🚗",
   "Basement":"🏚️","Cabinetry":"🪚","Central Vac":"🌀",
@@ -512,149 +471,115 @@ const CATEGORY_ICONS = {
   "Roofing":"🏘️","Sprinkler Systems":"💧","Storage":"📦",
   "Tires":"🚙","Window / Doors":"🪟"
 };
-
 let allData = [];
 
-/* ── CSV PARSER ── */
+/* ── CSV PARSER ─────────────────────────────────────────────────────────── */
 function parseCSVRow(line) {
-  const result = [];
-  let cur = '', inQ = false;
+  const result = []; let cur = '', inQ = false;
   for (let i = 0; i < line.length; i++) {
     const c = line[i];
-    if (c === '"') {
-      if (inQ && line[i+1] === '"') { cur += '"'; i++; }
-      else inQ = !inQ;
-    } else if (c === ',' && !inQ) { result.push(cur); cur = ''; }
-    else cur += c;
+    if (c === '"') { if (inQ && line[i+1]==='"') { cur+='"'; i++; } else inQ=!inQ; }
+    else if (c===',' && !inQ) { result.push(cur); cur=''; }
+    else cur+=c;
   }
-  result.push(cur);
-  return result;
+  result.push(cur); return result;
 }
-
 function parseCSV(text) {
   const lines = text.replace(/\r\n/g,'\n').replace(/\r/g,'\n').trim().split('\n');
   if (lines.length < 2) return [];
-  const headers = parseCSVRow(lines[0]).map(h => h.trim());
+  const headers = parseCSVRow(lines[0]).map(h=>h.trim());
   const rows = [];
-  for (let i = 1; i < lines.length; i++) {
-    const line = lines[i].trim();
-    if (!line) continue;
-    const vals = parseCSVRow(line);
-    const obj = {};
-    headers.forEach((h, idx) => obj[h] = (vals[idx] || '').trim());
+  for (let i=1; i<lines.length; i++) {
+    const line=lines[i].trim(); if (!line) continue;
+    const vals=parseCSVRow(line), obj={};
+    headers.forEach((h,idx)=>obj[h]=(vals[idx]||'').trim());
     if (obj.Name) rows.push(obj);
   }
   return rows;
 }
 
-/* ── LOAD ── */
+/* ── LOAD CSV ───────────────────────────────────────────────────────────── */
 async function loadCSV() {
   try {
-    const res = await fetch('businesses.csv?v=' + Date.now());
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    const text = await res.text();
-    allData = parseCSV(text);
-
+    const res = await fetch('businesses.csv?v='+Date.now());
+    if (!res.ok) throw new Error('HTTP '+res.status);
+    allData = parseCSV(await res.text());
     const lastMod = res.headers.get('Last-Modified');
     if (lastMod) {
       const d = new Date(lastMod);
       document.getElementById('lastUpdated').textContent =
-        '📅 ' + d.toLocaleDateString('en-CA', { year:'numeric', month:'short', day:'numeric' });
+        '📅 Updated '+d.toLocaleDateString('en-CA',{year:'numeric',month:'short',day:'numeric'});
     }
-
-    document.getElementById('loading').style.display = 'none';
+    document.getElementById('loading').style.display='none';
     render();
   } catch(e) {
-    document.getElementById('loading').style.display = 'none';
-    document.getElementById('errorBox').style.display = 'block';
-    console.error('Failed to load business.csv:', e);
+    document.getElementById('loading').style.display='none';
+    document.getElementById('errorBox').style.display='block';
+    console.error('CSV load error:',e);
   }
 }
 
-/* ── HELPERS ── */
-function esc(s) {
-  return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-function updateCount(n, q) {
-  document.getElementById('searchCount').textContent = q
-    ? `${n} result${n!==1?'s':''}`
-    : `${allData.length} listings`;
-}
+/* ── RENDER ─────────────────────────────────────────────────────────────── */
+function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
-/* ── RENDER ── */
 function render(filter) {
-  const dir = document.getElementById('directory');
-  const noRes = document.getElementById('noResults');
-  const q = (filter||'').toLowerCase().trim();
-
-  const filtered = q
-    ? allData.filter(d =>
-        [d.Category, d.Name, d.Phone, d.Description, d.ReferredBy]
-          .some(v => (v||'').toLowerCase().includes(q))
-      )
-    : allData;
-
-  const cats = [...new Set(filtered.map(d => d.Category))].filter(Boolean).sort();
-  dir.innerHTML = '';
-
-  if (!cats.length) { noRes.classList.add('show'); updateCount(0, q); return; }
+  const dir=document.getElementById('directory');
+  const noRes=document.getElementById('noResults');
+  const q=(filter||'').toLowerCase().trim();
+  const filtered=q ? allData.filter(d=>[d.Category,d.Name,d.Phone,d.Description,d.ReferredBy].some(v=>(v||'').toLowerCase().includes(q))) : allData;
+  const cats=[...new Set(filtered.map(d=>d.Category))].filter(Boolean).sort();
+  dir.innerHTML='';
+  if (!cats.length) { noRes.classList.add('show'); updateCount(0,q); return; }
   noRes.classList.remove('show');
-
-  cats.forEach((cat, i) => {
-    const items = filtered.filter(d => d.Category === cat);
-    const icon = CATEGORY_ICONS[cat] || '📋';
-    const block = document.createElement('div');
-    block.className = 'category-block' + (q ? ' open' : '');
-    block.style.animationDelay = (i * 0.03) + 's';
-
-    block.innerHTML = `
+  cats.forEach((cat,i)=>{
+    const items=filtered.filter(d=>d.Category===cat);
+    const block=document.createElement('div');
+    block.className='category-block'+(q?' open':'');
+    block.style.animationDelay=(i*0.03)+'s';
+    block.innerHTML=`
       <div class="category-header" onclick="toggleCat(this.parentElement)">
         <div class="cat-left">
-          <div class="cat-icon">${icon}</div>
+          <div class="cat-icon">${CATEGORY_ICONS[cat]||'📋'}</div>
           <span class="cat-name">${esc(cat)}</span>
           <span class="cat-count">${items.length}</span>
         </div>
         <span class="cat-chevron">▼</span>
       </div>
-      <div class="category-body">
-        ${items.map(listingHTML).join('')}
-      </div>`;
+      <div class="category-body">${items.map(listingHTML).join('')}</div>`;
     dir.appendChild(block);
   });
-
-  updateCount(filtered.length, q);
+  updateCount(filtered.length,q);
 }
 
 function listingHTML(d) {
-  const isOGS = (d.OGSDad||'').toLowerCase() === 'yes';
+  const isOGS=(d.OGSDad||'').toLowerCase()==='yes';
   return `<div class="listing">
-    <div class="listing-name">
-      ${esc(d.Name)}
-      ${isOGS ? '<span class="ogs-badge">OGS Dad</span>' : ''}
-    </div>
-    ${d.Phone   ? `<a class="listing-phone" href="tel:${esc(d.Phone)}">${esc(d.Phone)}</a>` : ''}
-    ${d.Phone2  ? `<div class="listing-phone2">Also: ${esc(d.Phone2)}</div>` : ''}
-    ${d.Website ? `<a class="listing-url" href="${esc(d.Website)}" target="_blank" rel="noopener">🔗 ${esc(d.Website.replace(/^https?:\/\//,''))}</a>` : ''}
-    ${d.Address ? `<div class="listing-address">📍 ${esc(d.Address)}</div>` : ''}
-    ${d.Hours   ? `<div class="listing-hours">🕐 ${esc(d.Hours)}</div>` : ''}
-    ${d.Description ? `<div class="listing-desc">${esc(d.Description)}</div>` : ''}
-    ${d.ReferredBy  ? `<div class="listing-ref">${esc(d.ReferredBy)}</div>` : ''}
+    <div class="listing-name">${esc(d.Name)}${isOGS?'<span class="ogs-badge">OGS Dad</span>':''}</div>
+    ${d.Phone   ?`<a class="listing-phone" href="tel:${esc(d.Phone)}">${esc(d.Phone)}</a>`:''}
+    ${d.Phone2  ?`<div class="listing-phone2">Also: ${esc(d.Phone2)}</div>`:''}
+    ${d.Website ?`<a class="listing-url" href="${esc(d.Website)}" target="_blank" rel="noopener">🔗 ${esc(d.Website.replace(/^https?:\/\//,''))}</a>`:''}
+    ${d.Address ?`<div class="listing-address">📍 ${esc(d.Address)}</div>`:''}
+    ${d.Hours   ?`<div class="listing-hours">🕐 ${esc(d.Hours)}</div>`:''}
+    ${d.Description?`<div class="listing-desc">${esc(d.Description)}</div>`:''}
+    ${d.ReferredBy ?`<div class="listing-ref">${esc(d.ReferredBy)}</div>`:''}
   </div>`;
 }
 
-/* ── ACCORDION ── */
-function toggleCat(block) { block.classList.toggle('open'); }
-function toggleAll(open) {
-  document.querySelectorAll('.category-block').forEach(b => b.classList.toggle('open', open));
+function updateCount(n,q){
+  document.getElementById('searchCount').textContent=q?`${n} result${n!==1?'s':''}`:`${allData.length} listings`;
 }
 
-/* ── SEARCH ── */
-document.getElementById('searchInput').addEventListener('input', e => {
+/* ── ACCORDION ──────────────────────────────────────────────────────────── */
+function toggleCat(block){ block.classList.toggle('open'); }
+function toggleAll(open){ document.querySelectorAll('.category-block').forEach(b=>b.classList.toggle('open',open)); }
+
+/* ── SEARCH ─────────────────────────────────────────────────────────────── */
+document.getElementById('searchInput').addEventListener('input',e=>{
   render(e.target.value);
-  if (e.target.value) toggleAll(true);
+  if(e.target.value) toggleAll(true);
 });
 
-/* ── INIT ── */
+/* ── INIT ───────────────────────────────────────────────────────────────── */
 loadCSV();
 </script>
 </body>
