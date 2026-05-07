@@ -233,145 +233,149 @@ footer { text-align: center; padding: 1.75rem 1rem; color: var(--muted); font-si
 
 
 /* ════════════════════════════════════════════
-   MOBILE STYLES  (body.is-mobile)
-   Applied via JavaScript on touch devices
+   MOBILE STYLES  — @media (max-width: 768px)
+   Standard CSS media query, no JS needed.
 ════════════════════════════════════════════ */
 
-/* Compact header */
-body.is-mobile header {
-  padding: 1.5rem 1rem 2.75rem;
-}
-body.is-mobile header h1 {
-  font-size: 2rem;
-}
-body.is-mobile header p {
-  font-size: 0.85rem;
-}
-body.is-mobile .header-badge {
-  font-size: 0.62rem;
-  padding: 0.25rem 0.75rem;
-  margin-bottom: 0.6rem;
-}
+@media (max-width: 768px) {
 
-/* Full-width search with bigger input */
-body.is-mobile .search-wrap {
-  padding: 0 0.75rem;
-}
-body.is-mobile .search-box {
-  padding: 0 0.85rem;
-  border-radius: 8px;
-}
-body.is-mobile .search-box input {
-  padding: 1.05rem 0;
-  font-size: 16px;
-}
-body.is-mobile #searchCount {
-  display: none;
-}
+  /* Compact header */
+  header {
+    padding: 1.5rem 1rem 2.75rem;
+  }
+  header h1 {
+    font-size: 2rem;
+  }
+  header p {
+    font-size: 0.85rem;
+  }
+  .header-badge {
+    font-size: 0.62rem;
+    padding: 0.25rem 0.75rem;
+    margin-bottom: 0.6rem;
+  }
 
-/* Toolbar — stack neatly */
-body.is-mobile .toolbar {
-  padding: 0 0.75rem;
-  margin-top: 0.85rem;
-  gap: 0.5rem;
-}
-body.is-mobile .btn-expand {
-  flex: 1;
-  text-align: center;
-  justify-content: center;
-  min-height: 48px;
-  font-size: 0.88rem;
-  border-radius: 8px;
-}
-body.is-mobile .last-updated {
-  width: 100%;
-  justify-content: center;
-  font-size: 0.7rem;
-}
+  /* Full-width search with bigger input */
+  .search-wrap {
+    padding: 0 0.75rem;
+  }
+  .search-box {
+    padding: 0 0.85rem;
+    border-radius: 8px;
+  }
+  .search-box input {
+    padding: 1.05rem 0;
+    font-size: 16px;
+  }
+  #searchCount {
+    display: none;
+  }
 
-/* Update info */
-body.is-mobile .update-info {
-  padding: 0 0.75rem;
-  margin-top: 0.75rem;
-}
-body.is-mobile .update-info summary {
-  font-size: 0.8rem;
-}
+  /* Toolbar — stack neatly */
+  .toolbar {
+    padding: 0 0.75rem;
+    margin-top: 0.85rem;
+    gap: 0.5rem;
+  }
+  .btn-expand {
+    flex: 1;
+    text-align: center;
+    justify-content: center;
+    min-height: 48px;
+    font-size: 0.88rem;
+    border-radius: 8px;
+  }
+  .last-updated {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.7rem;
+  }
 
-/* Main content */
-body.is-mobile main {
-  padding: 0 0.75rem;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-}
+  /* Update info */
+  .update-info {
+    padding: 0 0.75rem;
+    margin-top: 0.75rem;
+  }
+  .update-info summary {
+    font-size: 0.8rem;
+  }
 
-/* Category rows — bigger tap area */
-body.is-mobile .category-header {
-  padding: 0.9rem 1rem;
-  min-height: 60px;
-}
-body.is-mobile .cat-icon {
-  width: 40px; height: 40px;
-  font-size: 1.2rem;
-}
-body.is-mobile .cat-name {
-  font-size: 1rem;
-}
-body.is-mobile .cat-count {
-  font-size: 0.7rem;
-  padding: 0.2rem 0.55rem;
-}
-body.is-mobile .cat-chevron {
-  font-size: 0.85rem;
-}
+  /* Main content */
+  main {
+    padding: 0 0.75rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
 
-/* Listings — optimised for thumb use */
-body.is-mobile .listing {
-  padding: 1rem 1rem;
-}
-body.is-mobile .listing-name {
-  font-size: 1rem;
-  margin-bottom: 0.4rem;
-}
+  /* Category rows — bigger tap area */
+  .category-header {
+    padding: 0.9rem 1rem;
+    min-height: 60px;
+  }
+  .cat-icon {
+    width: 40px; height: 40px;
+    font-size: 1.2rem;
+  }
+  .cat-name {
+    font-size: 1rem;
+  }
+  .cat-count {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.55rem;
+  }
+  .cat-chevron {
+    font-size: 0.85rem;
+  }
 
-/* Big green phone button on mobile */
-body.is-mobile .listing-phone {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: var(--accent);
-  color: white;
-  font-size: 1rem;
-  font-weight: 600;
-  padding: 0.55rem 1.1rem;
-  border-radius: 8px;
-  margin: 0.4rem 0 0.25rem;
-  text-decoration: none;
-  -webkit-tap-highlight-color: transparent;
-  transition: opacity 0.15s;
-}
-body.is-mobile .listing-phone:active {
-  opacity: 0.8;
-}
-body.is-mobile .listing-phone::before {
-  content: '📞';
-  font-size: 0.85rem;
-}
-body.is-mobile .listing-desc {
-  font-size: 0.88rem;
-  margin-top: 0.4rem;
-}
-body.is-mobile .listing-url {
-  font-size: 0.85rem;
-  margin-top: 0.3rem;
-}
-body.is-mobile .listing-address {
-  font-size: 0.84rem;
-}
-body.is-mobile .listing-ref {
-  font-size: 0.78rem;
-  margin-top: 0.4rem;
-}
+  /* Listings — optimised for thumb use */
+  .listing {
+    padding: 1rem 1rem;
+  }
+  .listing-name {
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  /* Big green phone button on mobile */
+  .listing-phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--accent);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.55rem 1.1rem;
+    border-radius: 8px;
+    margin: 0.4rem 0 0.25rem;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: opacity 0.15s;
+  }
+  .listing-phone:active {
+    opacity: 0.8;
+  }
+  .listing-phone::before {
+    content: '📞';
+    font-size: 0.85rem;
+  }
+  .listing-desc {
+    font-size: 0.88rem;
+    margin-top: 0.4rem;
+  }
+  .listing-url {
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+  }
+  .listing-address {
+    font-size: 0.84rem;
+  }
+  .listing-ref {
+    font-size: 0.78rem;
+    margin-top: 0.4rem;
+  }
+
+} /* end @media (max-width: 768px) */
 
 </style>
 </head>
@@ -449,15 +453,6 @@ body.is-mobile .listing-ref {
 <footer>OGS Dads Community Directory · Mississauga, ON</footer>
 
 <script>
-/* ── MOBILE DETECTION ──────────────────────────────────────────────────────
-   Uses both touch capability AND screen width.
-   This fires before paint so there's no layout flash.                      */
-(function() {
-  const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-  const isNarrow = window.innerWidth <= 768;
-  if (isTouch || isNarrow) document.body.classList.add('is-mobile');
-})();
-
 /* ── DATA ─────────────────────────────────────────────────────────────── */
 const CATEGORY_ICONS = {
   "Accountant":"📊","Appliance Repair":"🔧","Auto Body":"🚗",
