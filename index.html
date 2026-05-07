@@ -496,7 +496,7 @@ function parseCSV(text) {
 /* ── LOAD CSV ───────────────────────────────────────────────────────────── */
 async function loadCSV() {
   try {
-    const res = await fetch('businesses.csv?v='+Date.now());
+    const res = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vQYDSjT05dkVZ8zU_DG2B2D-RWJ6IT5qYLNufTCSQCXoQn1qQgzt7mxSH09-3Zt9lKH2m5OgHStgA6X/pub?gid=790267220&single=true&output=csv');
     if (!res.ok) throw new Error('HTTP '+res.status);
     allData = parseCSV(await res.text());
     const lastMod = res.headers.get('Last-Modified');
